@@ -7,44 +7,52 @@
 # print(translator.translate('veritas lux mea', src='la').text)
 
 import time
+from transformers import MarianMTModel, MarianTokenizer
+
 def clock():
     global start
     now = time.time()
     print(f'elapsed={now - start}\n')
     start = now
 
+file_name_dutch = './tweets_dutch.txt'
+file_name_english = './tweets_english.txt'
+verbose = False
 
-from transformers import MarianMTModel, MarianTokenizer
-
+print("Translating tweets in " + file_name_dutch)
 start = time.time()
-print('loading/initializing model')
+if verbose:
+    print('loading/initializing model')
 
 model_name = "Helsinki-NLP/opus-mt-nl-en"
 tokenizer = MarianTokenizer.from_pretrained(model_name)
 model = MarianMTModel.from_pretrained(model_name)
 
-clock()
+if verbose:
+    clock()
 
 def translate(dutch):
     inputs = tokenizer(dutch, return_tensors='pt', padding=True)
     translated = model.generate(**inputs)
     return [tokenizer.decode(t, skip_special_tokens=True) for t in translated]
 
-import pandas as pd
-
-file_name_dutch = './tweets_dutch.txt'
-file_name_english = './tweets_english.txt'
+num_lines = sum(1 for line in open(file_name_dutch))
 
 with open(file_name_dutch, 'r') as d:
     with open(file_name_english, 'w') as e:
-        print('start translating')
+        if verbose:
+            print('start translating')
         max_n = 10000
         for id, tweet in zip(range(max_n), d.readlines()):
-            print(tweet, end='')
-            print(' -> ')
             translation = translate(tweet)[0]
-            print(translation)
+            if verbose:
+                print(tweet, end='')
+                print(' -> ')
+                print(translation)
+                clock()
+            else:
+                print("\r    Tweets translated: " + str(id + 1) + "/" + str(min(max_n, num_lines)), end="")
             print(translation, file=e)
 
-            clock()
-
+print()
+print("Done. Saved in " + file_name_english)
