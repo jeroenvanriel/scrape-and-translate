@@ -6,6 +6,7 @@ torchaudio==0.9.1
 
 pandas
 sklearn
+pyspark
 
 transformers[sentencepiece]
 
