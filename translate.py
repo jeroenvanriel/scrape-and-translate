@@ -38,7 +38,7 @@ file_name_english = './tweets_english.txt'
 with open(file_name_dutch, 'r') as d:
     with open(file_name_english, 'w') as e:
         print('start translating')
-        max_n = 20
+        max_n = 10000
         for id, tweet in zip(range(max_n), d.readlines()):
             print(tweet, end='')
             print(' -> ')
