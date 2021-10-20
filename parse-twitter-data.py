@@ -4,6 +4,7 @@ import snscrape.modules.twitter as sntwitter
 max_tweets = 100
 
 output_file = "tweets_dutch.txt"
+keywords_file = "keywords.txt"
 
 # function to scrape tweets by keyword
 def scrapeByKeyword(keyword):
@@ -19,13 +20,12 @@ def scrapeByKeyword(keyword):
 
 # Creating list to append tweet data to
 tweets_list = []
-# temporary. TODO load from file.
-keywords = ["hond", "kat", "meneer"]
 
-# Perform the scrape, keyword by keyword. TODO get from file.
-for keyword in keywords:
-    scrapeByKeyword(keyword)
-    print()
+# Perform the scrape, keyword by keyword.
+with open(keywords_file, 'r') as f:
+    for keyword in f.readlines():
+        scrapeByKeyword(keyword.rstrip("\n"))
+        print()
 
 # write contents of all scraped tweets to the output file.
 print("Beginning writing Dutch tweets to file...") 
