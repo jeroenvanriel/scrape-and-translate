@@ -32,17 +32,19 @@ def translate(dutch):
 
 import pandas as pd
 
-file_name = './tweets.txt'
+file_name_dutch = './tweets_dutch.txt'
+file_name_english = './tweets_english.txt'
 
-with open(file_name, 'r') as f:
+with open(file_name_dutch, 'r') as d:
+    with open(file_name_english, 'w') as e:
+        print('start translating')
+        max_n = 20
+        for id, tweet in zip(range(max_n), d.readlines()):
+            print(tweet, end='')
+            print(' -> ')
+            translation = translate(tweet)[0]
+            print(translation)
+            print(translation, file=e)
 
-    print('start translating')
-
-    max_n = 20
-    for id, tweet in zip(range(max_n), f.readlines()):
-        print(tweet, end='')
-        print(' -> ')
-        print(translate(tweet))
-
-        clock()
+            clock()
 
