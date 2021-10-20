@@ -5,6 +5,7 @@ torchvision==0.10.1+cpu
 torchaudio==0.9.1
 
 pandas
+sklearn
 
 transformers[sentencepiece]
 
