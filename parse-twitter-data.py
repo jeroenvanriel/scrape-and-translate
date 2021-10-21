@@ -9,7 +9,7 @@ keywords_file = "./keywords.txt"
 # function to scrape tweets by keyword
 def scrapeByKeyword(keyword):
     # Using TwitterSearchScraper to scrape data and append tweets to list
-    for i, tweet in enumerate(sntwitter.TwitterSearchScraper(keyword).get_items()):
+    for i, tweet in enumerate(sntwitter.TwitterSearchScraper(keyword + " lang:nl").get_items()):
         # print progress to CLI
         if i % 10 == 0:
             print("\r    Tweets scraped for keyword '" + keyword + "': " + str(i) + "/" + str(max_tweets) + "       ", end = "")
