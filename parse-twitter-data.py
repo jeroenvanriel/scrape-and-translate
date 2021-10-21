@@ -1,7 +1,7 @@
 import json
 import snscrape.modules.twitter as sntwitter
 
-max_tweets = 100
+max_tweets = 15
 
 output_file = "./tweets_dutch.txt"
 keywords_file = "./keywords.txt"
@@ -11,7 +11,7 @@ def scrapeByKeyword(keyword):
     # Using TwitterSearchScraper to scrape data and append tweets to list
     for i, tweet in enumerate(sntwitter.TwitterSearchScraper(keyword + " lang:nl").get_items()):
         # print progress to CLI
-        if i % 10 == 0:
+        if i % 5 == 0:
             print("\r    Tweets scraped for keyword '" + keyword + "': " + str(i) + "/" + str(max_tweets) + "       ", end = "")
         if i >= max_tweets:
             break
