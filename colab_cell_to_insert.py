@@ -6,14 +6,21 @@ english_path = '/content/english.csv'
 dutch_out_path = '/content/dutch_preds.csv'
 english_out_path = '/content/english_preds.csv'
 
+print("Parsing Dutch tweets...")
 dutch_df = pd.read_csv(dutch_path)
+print("Parsing English tweets...")
 english_df = pd.read_csv(english_path)
 
+print("Predicting Dutch tweets...")
 dutch_preds = fitted_pipe.predict(dutch_df)
+print("Predicting English tweets...")
 english_preds = fitted_pipe.predict(english_df)
 
-# this is where you could save only a slice of the dataframe, e.g. to not include the sentence embedding...
+# this is where you could save only a slice of the dataframe,
+# e.g. to not include the sentence embedding...
+print("Saving Dutch tweets...")
 dutch_preds.to_csv(dutch_out_path)
+print("Saving English tweets...")
 english_preds.to_csv(english_out_path)
 
 from google.colab import files
