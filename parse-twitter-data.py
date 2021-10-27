@@ -1,7 +1,7 @@
 import json
 import snscrape.modules.twitter as sntwitter
 
-max_tweets = 15
+max_tweets = 5
 
 output_file = "./tweets_dutch.txt"
 keywords_file = "./keywords.txt"

@@ -15,8 +15,8 @@ def clock():
     print(f'elapsed={now - start}\n')
     start = now
 
-file_name_dutch = './data processing/tweets_dutch_sietze.txt'
-file_name_english = './data processing/tweets_english_sietze.txt'
+file_name_dutch = './tweets_dutch.txt'
+file_name_english = './tweets_english.txt'
 verbose = False
 
 print("Translating tweets in " + file_name_dutch)
