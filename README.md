@@ -3,7 +3,7 @@
 ## Default workflow
 To scrape Dutch tweets and automatically translate them:
 1. `pip install -r requirements.txt` to install dependencies,
-1. `scrape-and-translate.sh` to scrape and immediately translate Dutch tweets to English.
+1. `./scrape-and-translate.sh` to scrape and immediately translate Dutch tweets to English.
 
 ## Advanced workflow
 Because we wanted to manually drop nonsensical tweets in between these steps, we had a different workflow to create data. This way, we could subdivide the manual work among all five authors.
